@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "preview": "vite preview",
+    "deploy:note": "echo 'Deployment handled by GitHub Actions (/.github/workflows/gh-pages.yml)'"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
