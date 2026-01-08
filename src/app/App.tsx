@@ -19,7 +19,7 @@ import {
   LogOut,
   UserRoundCog,
 } from "lucide-react";
-//import logoImg from "figma:asset/c40993ac1a40cd7c75707a904fac9ef4bb9329c7.png";
+import { Logo } from "./components/Logo";
 import { Dashboard } from "./components/Dashboard";
 import { ClientsView } from "./components/ClientsView";
 import { LaboralManagementView } from "./components/LaboralManagement/LaboralManagementView";
@@ -147,14 +147,7 @@ const navigation: NavigationItem[] = [
   { id: "settings", name: "Configuración", icon: Settings },
 ];
 
-function Logo() {
-  return (
-    <div className="flex items-center gap-2">
-      <img src={""} alt="Auria HR" className="w-10 h-10 rounded-lg" />
-      <span className="font-semibold text-[#241773]">Auria HR</span>
-    </div>
-  );
-}
+
 
 export default function App() {
   // Authentication state
