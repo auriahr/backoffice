@@ -62,6 +62,21 @@ import { CreateUser } from "./components/LoginManagement/CreateUser";
 import { Profile } from "./components/UserManagement/Profile";
 import { UserSettings } from "./components/UserManagement/UserSettings";
 import { LegalAccuse } from "./components/LegalManagement/LegalAccuse";
+import { LegalClients } from "./components/LegalManagement/LegalClients";
+import { TrainingClients } from "./components/TrainingManagement/TrainingClients";
+import { TrainingOnlineCat } from "./components/TrainingManagement/TrainingOnlineCat";
+import { TrainingRequests } from "./components/TrainingManagement/TrainingRequests";
+import { TrainingFiles } from "./components/TrainingManagement/TrainingFiles";
+import { TrainingCreate } from "./components/TrainingManagement/TrainingCreate";
+import { TrainingCustomized } from "./components/TrainingManagement/TrainingCustomized";
+import { TrainingTrainers } from "./components/TrainingManagement/TrainingTrainers";
+import { TrainingStudents } from "./components/TrainingManagement/TrainingStudents";
+import { InternationalClients } from "./components/InternationalManagement/InternationalClients";
+import { InternationalRequests } from "./components/InternationalManagement/InternationalRequest";
+import { InternationalProject } from "./components/InternationalManagement/InternationalProject";
+import { ConsultingClients } from "./components/ConsultingManagement/ConsultingClients";
+import { ConsultingRequests } from "./components/ConsultingManagement/ConsultingRequest";
+import { ConsultingProject } from "./components/ConsultingManagement/ConsultingProject";
 
 type View =
   | "dashboard"
@@ -83,6 +98,7 @@ type View =
   | "recruitment-openings"
   | "recruitment-candidates"
   | "legal"
+  | "legal-clients"
   | "legal-consultations"
   | "legal-accuse"
   | "legal-templates"
@@ -91,7 +107,21 @@ type View =
   | "support"
   | "settings"
   | "profile"
-  | "user-settings";
+  | "user-settings"
+  | "training-clients"
+  | "training-online-cat"
+  | "training-requests"
+  | "training-files"
+  | "training-create"
+  | "training-customized"
+  | "training-trainers"
+  | "training-students"
+  | "consulting-clients"
+  | "consulting-requests"
+  | "consulting-projects"
+  | "international-clients"
+  | "international-requests"
+  | "international-projects";
 
 interface NavigationItem {
   id: View;
@@ -118,9 +148,35 @@ const navigation: NavigationItem[] = [
       { id: "laboral-reports", name: "Informes" },
     ],
   },
-  { id: "international", name: "Gestión Internacional", icon: Globe },
-  { id: "consulting", name: "Gestión Consultoría", icon: Lightbulb },
-  { id: "training", name: "Gestión de Formación", icon: GraduationCap },
+  {
+    id: "international", name: "Gestión Internacional", icon: Globe,
+    subItems: [
+      { id: "international-clients", name: "Clientes" },
+      { id: "international-requests", name: "Solicitudes" },
+      { id: "international-projects", name: "Proyectos" },
+    ]
+  },
+  {
+    id: "consulting", name: "Gestión Consultoría", icon: Lightbulb,
+    subItems: [
+      { id: "consulting-clients", name: "Clientes" },
+      { id: "consulting-requests", name: "Solicitudes" },
+      { id: "consulting-projects", name: "Proyectos" },
+    ]
+  },
+  {
+    id: "training", name: "Gestión de Formación", icon: GraduationCap,
+    subItems: [
+      { id: "training-clients", name: "Clientes" },
+      { id: "training-online-cat", name: "Catálogo Online" },
+      { id: "training-requests", name: "Solicitudes" },
+      { id: "training-files", name: "Expedientes" },
+      { id: "training-create", name: "Crear Formación" },
+      { id: "training-customized", name: "Formación Personalizada" },
+      { id: "training-trainers", name: "Formadores" },
+      { id: "training-students", name: "Alumnos" },
+    ],
+  },
   {
     id: "recruitment",
     name: "Gestión de Selección",
@@ -136,6 +192,7 @@ const navigation: NavigationItem[] = [
     name: "Gestión Jurídica",
     icon: Scale,
     subItems: [
+      { id: "legal-clients", name: "Clientes" },
       { id: "legal-consultations", name: "Consultas Jurídicas" },
       { id: "legal-accuse", name: "Canal de Denuncias" },
       { id: "legal-templates", name: "Plantillas Legales" },
@@ -246,11 +303,36 @@ export default function App() {
       case "laboral-reports":
         return <LaboralReports />;
       case "international":
-        return <InternationalView />;
+      case "international-clients":
+        return <InternationalClients />;
+      case "international-requests":
+        return <InternationalRequests />;
+      case "international-projects":
+        return <InternationalProject />;
       case "consulting":
-        return <ConsultingView />;
+      case "consulting-clients":
+        return <ConsultingClients />;
+      case "consulting-requests":
+        return <ConsultingRequests />;
+      case "consulting-projects":
+        return <ConsultingProject />;
       case "training":
-        return <TrainingView />;
+      case "training-clients":
+        return <TrainingClients />;
+      case "training-online-cat":
+        return <TrainingOnlineCat />;
+      case "training-requests":
+        return <TrainingRequests />;
+      case "training-files":
+        return <TrainingFiles />;
+      case "training-create":
+        return <TrainingCreate />;
+      case "training-customized":
+        return <TrainingCustomized />;
+      case "training-trainers":
+        return <TrainingTrainers />;
+      case "training-students":
+        return <TrainingStudents />;
       case "recruitment":
       case "recruitment-client-requests":
         return <ClientRequests />;
@@ -259,6 +341,8 @@ export default function App() {
       case "recruitment-candidates":
         return <Candidates />;
       case "legal":
+      case "legal-clients":
+        return <LegalClients />;
       case "legal-consultations":
         return <LegalConsultations />;
       case "legal-accuse":
@@ -303,11 +387,10 @@ export default function App() {
               if (isMobile) setSidebarOpen(false);
             }
           }}
-          className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-colors ${
-            isActive && !hasSubItems
-              ? "bg-primary text-primary-foreground"
-              : "text-sidebar-foreground hover:bg-sidebar-accent"
-          }`}
+          className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-colors ${isActive && !hasSubItems
+            ? "bg-primary text-primary-foreground"
+            : "text-sidebar-foreground hover:bg-sidebar-accent"
+            }`}
         >
           <div className="flex items-center gap-3">
             <Icon size={20} />
@@ -316,9 +399,8 @@ export default function App() {
           {hasSubItems && (
             <ChevronRight
               size={16}
-              className={`transition-transform ${
-                isExpanded ? "rotate-90" : ""
-              }`}
+              className={`transition-transform ${isExpanded ? "rotate-90" : ""
+                }`}
             />
           )}
         </button>
@@ -331,11 +413,10 @@ export default function App() {
                   setCurrentView(subItem.id);
                   if (isMobile) setSidebarOpen(false);
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm ${
-                  currentView === subItem.id
-                    ? "bg-primary text-primary-foreground"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent"
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm ${currentView === subItem.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent"
+                  }`}
               >
                 {subItem.name}
               </button>
