@@ -77,6 +77,7 @@ import { InternationalProject } from "./components/InternationalManagement/Inter
 import { ConsultingClients } from "./components/ConsultingManagement/ConsultingClients";
 import { ConsultingRequests } from "./components/ConsultingManagement/ConsultingRequest";
 import { ConsultingProject } from "./components/ConsultingManagement/ConsultingProject";
+import { LaboralIT } from "./components/LaboralManagement/LaboralIT";
 
 type View =
   | "dashboard"
@@ -85,6 +86,7 @@ type View =
   | "laboral-control"
   | "laboral-requests"
   | "laboral-payroll"
+  | "laboral-it"
   | "laboral-contributions"
   | "laboral-taxes"
   | "laboral-documents"
@@ -142,6 +144,7 @@ const navigation: NavigationItem[] = [
       { id: "laboral-control", name: "Control - Biblia" },
       { id: "laboral-requests", name: "Solicitudes" },
       { id: "laboral-payroll", name: "Nóminas" },
+      { id: "laboral-it", name: "IT" },
       { id: "laboral-contributions", name: "Cotización" },
       { id: "laboral-taxes", name: "Impuestos" },
       { id: "laboral-documents", name: "Documentación" },
@@ -294,6 +297,8 @@ export default function App() {
         return <LaboralRequests />;
       case "laboral-payroll":
         return <LaboralPayrollView />;
+       case "laboral-it":
+        return <LaboralIT />; 
       case "laboral-contributions":
         return <LaboralContributions />;
       case "laboral-taxes":
