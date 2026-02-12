@@ -141,7 +141,7 @@ export function ClientsView() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <p className="text-muted-foreground">
-            Administra las empresas que usan Auria HR
+            Administra las Empresas que usan Auria HR
           </p>
         </div>
         <Dialog>
