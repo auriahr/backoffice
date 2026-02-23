@@ -1,4 +1,83 @@
 import { useState } from "react";
+import {
+  LayoutDashboard,
+  Building2,
+  Briefcase,
+  Globe,
+  Lightbulb,
+  GraduationCap,
+  UserPlus,
+  Scale,
+  HeadphonesIcon,
+  Settings,
+  Bell,
+  ChevronDown,
+  ChevronRight,
+  Menu,
+  X,
+  User,
+  LogOut,
+  UserRoundCog,
+} from "lucide-react";
+import { Logo } from "./components/Logo";
+import { Dashboard } from "./components/Dashboard";
+import { ClientsView } from "./components/ClientsView";
+import { LaboralManagementView } from "./components/LaboralManagement/LaboralManagementView";
+import { InternationalView } from "./components/InternationalView";
+import { ConsultingView } from "./components/ConsultingView";
+import { TrainingView } from "./components/TrainingView";
+import { RecruitmentManagementView } from "./components/RecruitmentManagement/RecruitmentManagementView";
+import { LegalManagementView } from "./components/LegalManagement/LegalManagementView";
+import { SupportView } from "./components/SupportView";
+import { SettingsView } from "./components/SettingsView";
+import { UserManagementView } from "./components/UserManagement/UserManagementView";
+import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./components/ui/dropdown-menu";
+import { TooltipProvider } from "./components/ui/tooltip";
+import { Badge } from "./components/ui/badge";
+import { LegalConsultations } from "./components/LegalManagement/LegalConsultations";
+import { LegalTemplates } from "./components/LegalManagement/LegalTemplates";
+import { LegalRegulations } from "./components/LegalManagement/LegalRegulations";
+import { LegalFiles } from "./components/LegalManagement/LegalFiles";
+import { ClientRequests } from "./components/RecruitmentManagement/ClientRequests";
+import { JobOpenings } from "./components/RecruitmentManagement/JobOpenings";
+import { Candidates } from "./components/RecruitmentManagement/Candidates";
+import { LaboralReports } from "./components/LaboralManagement/LaboralReports";
+import { LaboralControl } from "./components/LaboralManagement/LaboralControl";
+import { LaboralRequests } from "./components/LaboralManagement/LaboralRequests";
+import { LaboralPayroll } from "./components/LaboralManagement/LaboralPayroll";
+import { LaboralPayrollView } from "./components/LaboralManagement/LaboralPayrollTab/LaboralPayrollView";
+import { LaboralContributions } from "./components/LaboralManagement/LaboralContributions";
+import { LaboralTaxes } from "./components/LaboralManagement/LaboralTaxes";
+import { LaboralClients } from "./components/LaboralManagement/LaboralClients";
+import { LaboralDocuments } from "./components/LaboralManagement/LaboralDocuments";
+import { Login } from "./components/LoginManagement/Login";
+import { CreateUser } from "./components/LoginManagement/CreateUser";
+import { Profile } from "./components/UserManagement/Profile";
+import { UserSettings } from "./components/UserManagement/UserSettings";
+import { LegalAccuse } from "./components/LegalManagement/LegalAccuse";
+import { LegalClients } from "./components/LegalManagement/LegalClients";
+import { TrainingClients } from "./components/TrainingManagement/TrainingClients";
+import { TrainingOnlineCat } from "./components/TrainingManagement/TrainingOnlineCat";
+import { TrainingRequests } from "./components/TrainingManagement/TrainingRequests";
+import { TrainingFiles } from "./components/TrainingManagement/TrainingFiles";
+import { TrainingCreate } from "./components/TrainingManagement/TrainingCreate";
+import { TrainingCustomized } from "./components/TrainingManagement/TrainingCustomized";
+import { TrainingTrainers } from "./components/TrainingManagement/TrainingTrainers";
+import { TrainingStudents } from "./components/TrainingManagement/TrainingStudents";
+import { InternationalClients } from "./components/InternationalManagement/InternationalClients";
+import { InternationalRequests } from "./components/InternationalManagement/InternationalRequest";
+import { InternationalProject } from "./components/InternationalManagement/InternationalProject";
+import { ConsultingClients } from "./components/ConsultingManagement/ConsultingClients";
+import { ConsultingRequests } from "./components/ConsultingManagement/ConsultingRequest";
+import { ConsultingProject } from "./components/ConsultingManagement/ConsultingProject";
+import { LaboralIT } from "./components/LaboralManagement/LaboralIT";
 
 type View =
   | "dashboard"
@@ -132,7 +211,7 @@ const navigation: NavigationItem[] = [
 
 export default function App() {
   // Authentication state
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authView, setAuthView] = useState<"login" | "create-user">("login");
   const [currentUser, setCurrentUser] = useState<{
     name: string;
